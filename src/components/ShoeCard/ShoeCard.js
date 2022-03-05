@@ -31,21 +31,26 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
-  const labelText = variant === 'on-sale' ? 'Sale' : 'Just released!';
-
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
-          {variant !== 'default' && (
-            <Label variant={variant}>{labelText}</Label>
-          )}
+          {variant === 'on-sale' && <SaleLabel>Sale</SaleLabel>}
+          {variant === 'new-release' && <NewLabel>Just Released!</NewLabel>}
           <Image alt='' src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price variant={variant}>{formatPrice(price)}</Price>
+          <Price
+            style={{
+              '--color': variant === 'on-sale' ? COLORS.gray[700] : undefined,
+              '--text-decoration':
+                variant === 'on-sale' ? 'line-through' : undefined,
+            }}
+          >
+            {formatPrice(price)}
+          </Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
@@ -61,7 +66,6 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
-  flex: 1 1 300px;
 `;
 
 const Wrapper = styled.article``;
@@ -86,8 +90,8 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
-  color: ${(p) => p.variant === 'on-sale' && COLORS.gray[700]};
-  text-decoration: ${(p) => p.variant === 'on-sale' && 'line-through'};
+  color: var(--color);
+  text-decoration: var(--text-decoration);
 `;
 
 const ColorInfo = styled.p`
@@ -104,13 +108,20 @@ const Label = styled.label`
   top: 12px;
   right: -4px;
   color: ${COLORS.white};
-  font-size: ${14 / 16}rem;
+  font-size: ${14 / 18}rem;
   font-weight: ${WEIGHTS.bold};
   height: 32px;
-  padding: 8px 12px;
+  line-height: 32px;
+  padding: 0px 10px;
   border-radius: 2px;
-  background-color: ${(p) =>
-    p.variant === 'on-sale' ? COLORS.primary : COLORS.secondary};
+`;
+
+const SaleLabel = styled(Label)`
+  background-color: ${COLORS.primary};
+`;
+
+const NewLabel = styled(Label)`
+  background-color: ${COLORS.secondary};
 `;
 
 export default ShoeCard;

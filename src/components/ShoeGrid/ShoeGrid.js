@@ -6,18 +6,25 @@ import ShoeCard from '../ShoeCard';
 
 const ShoeGrid = () => {
   return (
-    <Wrapper>
+    <GridWrapper>
       {SHOES.map((shoe) => (
-        <ShoeCard key={shoe.slug} {...shoe} />
+        <ShoeWrapper key={shoe.slug}>
+          <ShoeCard  {...shoe} />
+        </ShoeWrapper>
       ))}
-    </Wrapper>
+    </GridWrapper>
   );
 };
 
-const Wrapper = styled.div`
+const GridWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 36px;
+`;
+
+const ShoeWrapper = styled.div`
+  min-width: 275px;
+  flex: 1;
 `;
 
 
