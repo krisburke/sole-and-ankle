@@ -27,6 +27,14 @@ _Note that we're only focusing on the design._ The links and inputs don't do any
 > tokens can be found in `/src/constants`. The custom font is
 > Raleway, from Google Fonts.
 
+## Troubleshooting
+
+If you run into problems running a local development server, check out our [Troubleshooting Guide](https://courses.joshwcomeau.com/troubleshooting) on the course platform.
+
+This guide addresses the common `Digital Envelope Routine` error you may have seen.
+
+---
+
 ## Exercise 1: Superheader
 
 Let's build the “Superheader” a thin grey strip that runs along the top of the page:
@@ -40,6 +48,12 @@ Use Flexbox to correctly align the elements within `src/components/SuperHeader`.
 Continuing on down, let's tackle the main header:
 
 ![Close-up screenshot of the header and superheader](./docs/exercise-2-solution.png)
+
+The trickiest part of this exercise is the _position of the main navigation_. We want it to be perfectly centered within the container:
+
+![Screenshot showing the position of the navigation within the header](./docs/nav-position.png)
+
+This is a thorny problem, and it's not something we've explicitly seen in the course. Give it your best shot, but please don't be discouraged if you can't figure it out!
 
 ## Exercise 3: Shell
 
@@ -69,11 +83,18 @@ In a future module, we'll revisit this and see how CSS Grid can help us out :)
 
 ## 4B: Final touches
 
-Our sneaker store is in pretty good shape, but there's a couple small bits of polish missing: the "New Release" / "Sale" flag, and the sale price detail.
+Our sneaker store is in pretty good shape, but there's two small details missing:
 
-_NOTE:_ This exercise has minimal flexbox implications, and is mainly about revisiting lessons learned in the previous modules (including positioned layout and styled-components). Feel free to skip it if you'd prefer!
+1. The “Sale” and “Just Released” flags.
+1. The crossed-out prices, for items that are on sale.
+
+Inside `ShoeCard.js`, you'll find a `variant` variable you can use to figure out which flag, if any, needs to be rendered. It's up to you to create the flag, using styled-components.
+
+For the crossed-out prices, you can use the `price` and `salePrice` props.
 
 ![Screenshot of the store, with the final details added](./docs/exercise-4b-solution.png)
+
+_NOTE:_ This exercise has minimal flexbox implications, and is mainly about revisiting lessons learned in the previous modules (including positioned layout and styled-components). Feel free to skip it if you'd prefer!
 
 ## To be continued!
 
